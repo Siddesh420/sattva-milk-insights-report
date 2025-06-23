@@ -1,5 +1,6 @@
+
 import React from 'react';
-import { MapPin, Clock, Award, Users, Milk } from 'lucide-react';
+import { MapPin, Clock, Award, Users, Droplets } from 'lucide-react';
 
 const Story = () => {
   return (
@@ -96,7 +97,7 @@ const Story = () => {
               {/* Step 3 */}
               <div className="flex items-start space-x-4">
                 <div className="bg-terracotta-500 text-white rounded-full w-12 h-12 flex items-center justify-center flex-shrink-0">
-                  <Milk className="h-6 w-6" />
+                  <Droplets className="h-6 w-6" />
                 </div>
                 <div className="bg-white rounded-xl p-4 flex-1 border border-sage-200">
                   <h4 className="font-bold text-earth-800 mb-2">8:00 AM - Fresh Delivery</h4>
