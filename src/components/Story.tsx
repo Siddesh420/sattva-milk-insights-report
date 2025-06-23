@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { MapPin, Clock, Award, Users } from 'lucide-react';
+import { MapPin, Clock, Award, Users, Milk } from 'lucide-react';
 
 const Story = () => {
   return (
