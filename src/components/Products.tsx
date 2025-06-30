@@ -1,16 +1,19 @@
-
 import React, { useState } from 'react';
 import { Milk, Coffee, ChefHat, Cookie } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from './ui/carousel';
 import Autoplay from 'embla-carousel-autoplay';
 import ProductModal from './ProductModal';
+import { useCart } from '../contexts/CartContext';
+import { toast } from 'sonner';
 
 const Products = () => {
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const { addItem } = useCart();
 
   const products = [
     {
+      id: 1,
       name: "Organic Cow Milk",
       hindi: "जैविक गाय का दूध",
       price: "₹85",
@@ -34,6 +37,7 @@ const Products = () => {
       }
     },
     {
+      id: 2,
       name: "Fresh Buttermilk", 
       hindi: "ताजा छाछ",
       price: "₹64",
@@ -57,6 +61,7 @@ const Products = () => {
       }
     },
     {
+      id: 3,
       name: "Organic Desi Ghee",
       hindi: "जैविक देसी घी",
       price: "₹795",
@@ -80,6 +85,7 @@ const Products = () => {
       }
     },
     {
+      id: 4,
       name: "Malai Paneer",
       hindi: "मलाई पनीर", 
       price: "₹191",
@@ -103,6 +109,22 @@ const Products = () => {
       }
     }
   ];
+
+  const handleAddToCart = (product: any) => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      hindi: product.hindi,
+      price: parseInt(product.price.replace('₹', '')),
+      unit: product.size,
+      category: product.name.toLowerCase().includes('milk') ? 'milk' : 
+               product.name.toLowerCase().includes('ghee') ? 'ghee' :
+               product.name.toLowerCase().includes('paneer') ? 'paneer' : 'other'
+    });
+    toast.success(`${product.name} added to cart!`, {
+      description: `${product.price} per ${product.size}`
+    });
+  };
 
   const openModal = (product: any) => {
     setSelectedProduct(product);
@@ -214,7 +236,10 @@ const Products = () => {
 
                 {/* Action Buttons */}
                 <div className="space-y-2">
-                  <button className="w-full bg-terracotta-500 text-white py-3 rounded-xl hover:bg-terracotta-600 transition-all duration-300 font-medium group-hover:shadow-lg transform hover:scale-[1.02]">
+                  <button 
+                    onClick={() => handleAddToCart(product)}
+                    className="w-full bg-terracotta-500 text-white py-3 rounded-xl hover:bg-terracotta-600 transition-all duration-300 font-medium group-hover:shadow-lg transform hover:scale-[1.02]"
+                  >
                     Add to Cart
                   </button>
                   <button 

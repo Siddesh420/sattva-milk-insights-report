@@ -1,15 +1,17 @@
-
 import React, { useState } from 'react';
 import { Search, Milk, Cookie, ChefHat, Coffee, Zap, ShoppingCart, Star, Sparkles } from 'lucide-react';
 import { Badge } from './ui/badge';
 import { Button } from './ui/button';
 import { Card, CardContent } from './ui/card';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from './ui/table';
+import { useCart } from '../contexts/CartContext';
+import { toast } from 'sonner';
 
 const ProductListing = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('name');
   const [sortOrder, setSortOrder] = useState('asc');
+  const { addItem } = useCart();
 
   const products = [
     {
@@ -133,6 +135,20 @@ const ProductListing = () => {
       category: "milk"
     }
   ];
+
+  const handleAddToCart = (product: any) => {
+    addItem({
+      id: product.id,
+      name: product.name,
+      hindi: product.hindi,
+      price: product.ourPrice,
+      unit: product.unit,
+      category: product.category
+    });
+    toast.success(`${product.name} added to cart!`, {
+      description: `₹${product.ourPrice} per ${product.unit}`
+    });
+  };
 
   const filteredProducts = products.filter(product =>
     product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -299,7 +315,10 @@ const ProductListing = () => {
                     </div>
                   </TableCell>
                   <TableCell className="text-center py-6">
-                    <Button className="bg-terracotta-500 hover:bg-terracotta-600 text-white px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                    <Button 
+                      onClick={() => handleAddToCart(product)}
+                      className="bg-terracotta-500 hover:bg-terracotta-600 text-white px-6 py-2 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                    >
                       <ShoppingCart className="h-4 w-4 mr-2" />
                       Add to Cart
                     </Button>
@@ -359,7 +378,10 @@ const ProductListing = () => {
                   </div>
                 </div>
                 
-                <Button className="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]">
+                <Button 
+                  onClick={() => handleAddToCart(product)}
+                  className="w-full bg-terracotta-500 hover:bg-terracotta-600 text-white py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+                >
                   <ShoppingCart className="h-4 w-4 mr-2" />
                   Add to Cart - ₹{product.ourPrice}
                 </Button>

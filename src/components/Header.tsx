@@ -1,11 +1,13 @@
 
 import React, { useState } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingCart } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import { useCart } from '../contexts/CartContext';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
+  const { state } = useCart();
 
   const isActive = (path: string) => location.pathname === path;
 
@@ -50,6 +52,14 @@ const Header = () => {
             >
               Product Catalog
             </Link>
+            <Link 
+              to="/subscription" 
+              className={`transition-colors font-medium ${
+                isActive('/subscription') ? 'text-terracotta-600' : 'text-earth-700 hover:text-terracotta-600'
+              }`}
+            >
+              Subscription
+            </Link>
             <a 
               href="/#story" 
               className="text-earth-700 hover:text-terracotta-600 transition-colors font-medium"
@@ -70,8 +80,19 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Cart and CTA */}
+          <div className="hidden md:flex items-center space-x-4">
+            <Link 
+              to="/cart" 
+              className="relative p-2 text-earth-700 hover:text-terracotta-600 transition-colors"
+            >
+              <ShoppingCart className="h-6 w-6" />
+              {state.itemCount > 0 && (
+                <span className="absolute -top-2 -right-2 bg-terracotta-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                  {state.itemCount}
+                </span>
+              )}
+            </Link>
             <button className="bg-terracotta-500 text-white px-6 py-2 rounded-full hover:bg-terracotta-600 transition-colors font-medium shadow-lg">
               Order Now
             </button>
@@ -115,6 +136,15 @@ const Header = () => {
               >
                 Product Catalog
               </Link>
+              <Link 
+                to="/subscription" 
+                className={`transition-colors font-medium ${
+                  isActive('/subscription') ? 'text-terracotta-600' : 'text-earth-700 hover:text-terracotta-600'
+                }`}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                Subscription
+              </Link>
               <a 
                 href="/#story" 
                 className="text-earth-700 hover:text-terracotta-600 transition-colors font-medium"
@@ -136,6 +166,14 @@ const Header = () => {
               >
                 Contact
               </a>
+              <Link 
+                to="/cart" 
+                className="flex items-center gap-2 text-earth-700 hover:text-terracotta-600 transition-colors font-medium"
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <ShoppingCart className="h-5 w-5" />
+                Cart ({state.itemCount})
+              </Link>
               <button className="bg-terracotta-500 text-white px-6 py-2 rounded-full hover:bg-terracotta-600 transition-colors font-medium w-fit">
                 Order Now
               </button>
