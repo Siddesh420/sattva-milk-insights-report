@@ -23,7 +23,7 @@ const Products = () => {
       description: "Fresh A2 desi cow milk, rich in protein and natural goodness. Sourced from happy, grass-fed cows in Rajasthan farms.",
       features: ["A2 Protein", "No Adulterants", "Farm Fresh"],
       images: [
-        "https://images.unsplash.com/photo-1563636619-e9143da7973b?w=400&h=400&fit=crop",
+        "https://i.postimg.cc/7hyg3bhd/raw.png",
         "https://images.unsplash.com/photo-1550583724-b2692b85b150?w=400&h=400&fit=crop",
         "https://images.unsplash.com/photo-1518384401463-7c69f97279de?w=400&h=400&fit=crop"
       ],
