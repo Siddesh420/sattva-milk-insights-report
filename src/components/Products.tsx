@@ -71,9 +71,9 @@ const Products = () => {
       description: "Pure A2 cow ghee made using traditional bilona method. Golden colored with divine aroma and medicinal properties.",
       features: ["Bilona Method", "A2 Cow Ghee", "Golden Color"],
       images: [
-        "https://i.postimg.cc/k5VC8v21/ghee.jpg",
+        "https://i.postimg.cc/rwSJFKCD/ghee-1.jpg",
         "https://i.postimg.cc/0jY2SyKt/Delicious-41.jpg",
-        "https://i.postimg.cc/k5VC8v21/ghee.jpg"
+        "https://i.postimg.cc/rwSJFKCD/ghee-1.jpg"
       ],
       story: "Hand-churned using 200-year-old bilona technique",
       nutrition: { fat: "99.8%", protein: "0.3%", calcium: "25mg", vitamins: "A, D, E, K" },
