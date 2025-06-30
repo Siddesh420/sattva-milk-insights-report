@@ -1,9 +1,10 @@
 
 import { useLocation } from "react-router-dom";
 import { useEffect } from "react";
-import { Home, ArrowLeft, Users, Heart, Code, Palette, Coffee } from "lucide-react";
+import { Home, ArrowLeft, Users, Heart, Code, Palette, Coffee, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 
 const NotFound = () => {
   const location = useLocation();
@@ -21,28 +22,40 @@ const NotFound = () => {
       role: "Full Stack Developer",
       icon: Code,
       contribution: "Built the entire platform architecture",
-      color: "from-blue-500 to-cyan-500"
+      color: "from-blue-500 to-cyan-500",
+      initials: "AS",
+      followers: "324",
+      posts: "52"
     },
     {
       name: "Priya Patel", 
       role: "UI/UX Designer",
       icon: Palette,
       contribution: "Designed the beautiful user experience",
-      color: "from-purple-500 to-pink-500"
+      color: "from-purple-500 to-pink-500",
+      initials: "PP",
+      followers: "287",
+      posts: "41"
     },
     {
       name: "Rohan Kumar",
       role: "Backend Engineer", 
       icon: Coffee,
       contribution: "Crafted robust server infrastructure",
-      color: "from-green-500 to-emerald-500"
+      color: "from-green-500 to-emerald-500",
+      initials: "RK",
+      followers: "195",
+      posts: "38"
     },
     {
       name: "Sneha Reddy",
       role: "Product Manager",
       icon: Users,
       contribution: "Orchestrated product vision & strategy",
-      color: "from-orange-500 to-red-500"
+      color: "from-orange-500 to-red-500",
+      initials: "SR",
+      followers: "412",
+      posts: "67"
     }
   ];
 
@@ -95,56 +108,103 @@ const NotFound = () => {
           </div>
         </div>
 
-        {/* Credits Section */}
-        <div className="max-w-6xl mx-auto animate-fade-in delay-700">
-          <div className="text-center mb-12">
-            <h3 className="text-3xl font-bold text-earth-800 mb-4">
+        {/* Enhanced Credits Section */}
+        <div className="max-w-7xl mx-auto animate-fade-in delay-700">
+          <div className="text-center mb-16">
+            <h3 className="text-4xl font-bold text-earth-800 mb-6">
               Meet Our Amazing Team
             </h3>
-            <p className="text-earth-600 max-w-2xl mx-auto">
+            <p className="text-lg text-earth-600 max-w-3xl mx-auto leading-relaxed">
               The passionate individuals who crafted this organic dairy experience with love and dedication.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-8">
             {teamMembers.map((member, index) => {
               const IconComponent = member.icon;
               return (
                 <Card 
                   key={member.name}
-                  className="group hover:shadow-2xl transition-all duration-500 hover:-translate-y-2 bg-white/80 backdrop-blur-sm border-sage-200 overflow-hidden animate-fade-in"
+                  className="group relative overflow-hidden bg-white/90 backdrop-blur-md border-0 shadow-xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 rounded-3xl animate-fade-in"
                   style={{ animationDelay: `${800 + index * 200}ms` }}
                 >
-                  <CardContent className="p-6 text-center">
-                    <div className={`w-16 h-16 rounded-full bg-gradient-to-r ${member.color} mx-auto mb-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <IconComponent className="h-8 w-8 text-white" />
+                  {/* Gradient background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${member.color} opacity-5 group-hover:opacity-10 transition-opacity duration-300`}></div>
+                  
+                  <CardContent className="relative p-8 text-center">
+                    {/* Avatar Section */}
+                    <div className="relative mb-6">
+                      <Avatar className="w-24 h-24 mx-auto ring-4 ring-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                        <AvatarImage src="/placeholder.svg" alt={member.name} />
+                        <AvatarFallback className={`text-white text-xl font-bold bg-gradient-to-br ${member.color}`}>
+                          {member.initials}
+                        </AvatarFallback>
+                      </Avatar>
+                      
+                      {/* Verified badge */}
+                      <div className="absolute -bottom-1 -right-1">
+                        <div className="bg-white rounded-full p-1 shadow-lg">
+                          <CheckCircle className="h-5 w-5 text-green-500" />
+                        </div>
+                      </div>
                     </div>
                     
-                    <h4 className="text-lg font-bold text-earth-800 mb-1">
-                      {member.name}
-                    </h4>
+                    {/* Name and Role */}
+                    <div className="mb-4">
+                      <h4 className="text-xl font-bold text-earth-800 mb-1 group-hover:text-earth-900 transition-colors">
+                        {member.name}
+                      </h4>
+                      <p className="text-sm font-semibold text-terracotta-600 uppercase tracking-wide">
+                        {member.role}
+                      </p>
+                    </div>
                     
-                    <p className="text-sm font-medium text-terracotta-600 mb-3">
-                      {member.role}
-                    </p>
+                    {/* Icon */}
+                    <div className={`w-12 h-12 rounded-2xl bg-gradient-to-br ${member.color} mx-auto mb-4 flex items-center justify-center group-hover:scale-110 group-hover:rotate-12 transition-all duration-300 shadow-lg`}>
+                      <IconComponent className="h-6 w-6 text-white" />
+                    </div>
                     
-                    <p className="text-xs text-earth-600 leading-relaxed">
+                    {/* Contribution */}
+                    <p className="text-sm text-earth-600 leading-relaxed mb-6 group-hover:text-earth-700 transition-colors">
                       {member.contribution}
                     </p>
                     
-                    <div className="mt-4 flex justify-center">
-                      <Heart className="h-4 w-4 text-terracotta-400 group-hover:text-terracotta-500 group-hover:scale-125 transition-all duration-300" />
+                    {/* Stats */}
+                    <div className="flex justify-center items-center gap-6 mb-6 text-sm text-earth-500">
+                      <div className="flex items-center gap-1">
+                        <Users className="h-4 w-4" />
+                        <span className="font-medium">{member.followers}</span>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Heart className="h-4 w-4" />
+                        <span className="font-medium">{member.posts}</span>
+                      </div>
                     </div>
+                    
+                    {/* Follow Button */}
+                    <Button 
+                      variant="outline" 
+                      size="sm" 
+                      className="w-full border-2 border-sage-200 text-sage-700 hover:bg-sage-50 hover:border-sage-300 transition-all duration-300 rounded-xl font-semibold group-hover:scale-105"
+                    >
+                      Follow +
+                    </Button>
                   </CardContent>
                 </Card>
               );
             })}
           </div>
 
-          <div className="text-center mt-12 animate-fade-in delay-1000">
-            <p className="text-earth-600 text-sm">
-              Made with <Heart className="inline h-4 w-4 text-terracotta-500 mx-1" /> and lots of organic milk in India
-            </p>
+          <div className="text-center mt-16 animate-fade-in delay-1000">
+            <div className="inline-flex items-center gap-2 px-6 py-3 bg-white/80 backdrop-blur-sm rounded-full shadow-lg border border-sage-200">
+              <span className="text-earth-600 text-sm font-medium">
+                Made with
+              </span>
+              <Heart className="h-4 w-4 text-terracotta-500 animate-pulse" />
+              <span className="text-earth-600 text-sm font-medium">
+                and lots of organic milk in India
+              </span>
+            </div>
           </div>
         </div>
       </div>
