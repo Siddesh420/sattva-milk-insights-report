@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Milk, Leaf, Heart } from 'lucide-react';
 
@@ -38,10 +37,10 @@ const Hero = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
-              <button className="touch-target bg-terracotta-500 dark:bg-terracotta-400 text-white px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-terracotta-600 dark:hover:bg-terracotta-500 transition-colors font-semibold text-responsive-base shadow-lg focus-ring w-full sm:w-auto">
+              <button className="touch-target bg-terracotta-500 dark:bg-terracotta-400 text-white py-2 sm:py-3 rounded-xl hover:bg-terracotta-600 dark:hover:bg-terracotta-500 transition-colors font-semibold text-responsive-base shadow-lg focus-ring w-full sm:w-auto">
                 Start Your Subscription
               </button>
-              <button className="touch-target border-2 border-earth-600 dark:border-earth-400 text-earth-600 dark:text-earth-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-earth-600 dark:hover:bg-earth-400 hover:text-white dark:hover:text-earth-800 transition-colors font-semibold text-responsive-base focus-ring w-full sm:w-auto">
+              <button className="touch-target border-2 border-earth-600 dark:border-earth-400 text-earth-600 dark:text-earth-400 py-2 sm:py-3 rounded-xl hover:bg-earth-600 dark:hover:bg-earth-400 hover:text-white dark:hover:text-earth-800 transition-colors font-semibold text-responsive-base focus-ring w-full sm:w-auto">
                 Explore Products
               </button>
             </div>
