@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { Menu, X, ShoppingCart } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
+import { ThemeToggle } from './ThemeToggle';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -12,7 +13,7 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="bg-white/90 backdrop-blur-sm sticky top-0 z-50 border-b border-sage-200">
+    <header className="bg-white/90 dark:bg-background/90 backdrop-blur-sm sticky top-0 z-50 border-b border-sage-200 dark:border-sage-700">
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           {/* Logo */}
@@ -23,8 +24,8 @@ const Header = () => {
               className="h-12 w-auto"
             />
             <div className="hidden sm:block">
-              <h1 className="text-2xl font-bold text-earth-800">SATTVAMILK</h1>
-              <p className="text-sm text-sage-600 -mt-1">सत्य दूध - The Honest Dairy</p>
+              <h1 className="text-2xl font-bold text-earth-800 dark:text-earth-200">SATTVAMILK</h1>
+              <p className="text-sm text-sage-600 dark:text-sage-400 -mt-1">सत्य दूध - The Honest Dairy</p>
             </div>
           </Link>
 
@@ -80,20 +81,21 @@ const Header = () => {
             </a>
           </nav>
 
-          {/* Cart and CTA */}
+          {/* Cart, Theme Toggle and CTA */}
           <div className="hidden md:flex items-center space-x-4">
+            <ThemeToggle />
             <Link 
               to="/cart" 
-              className="relative p-2 text-earth-700 hover:text-terracotta-600 transition-colors"
+              className="relative p-2 text-earth-700 hover:text-terracotta-600 transition-colors dark:text-earth-200 dark:hover:text-terracotta-400"
             >
               <ShoppingCart className="h-6 w-6" />
               {state.itemCount > 0 && (
-                <span className="absolute -top-2 -right-2 bg-terracotta-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold">
+                <span className="absolute -top-2 -right-2 bg-terracotta-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-bold dark:bg-terracotta-400">
                   {state.itemCount}
                 </span>
               )}
             </Link>
-            <button className="bg-terracotta-500 text-white px-6 py-2 rounded-full hover:bg-terracotta-600 transition-colors font-medium shadow-lg">
+            <button className="bg-terracotta-500 text-white px-6 py-2 rounded-full hover:bg-terracotta-600 transition-colors font-medium shadow-lg dark:bg-terracotta-400 dark:hover:bg-terracotta-500">
               Order Now
             </button>
           </div>
