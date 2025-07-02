@@ -132,33 +132,33 @@ const Products = () => {
   };
 
   return (
-    <section id="products" className="py-20 bg-gradient-to-br from-cream-50 to-sage-50">
-      <div className="container mx-auto px-4">
+    <section id="products" className="py-12 sm:py-16 lg:py-20 bg-gradient-to-br from-cream-50 to-sage-50 dark:from-background dark:to-card">
+      <div className="container-responsive">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <h2 className="text-4xl lg:text-5xl font-bold text-earth-800 mb-4">
-            Our <span className="text-terracotta-600">Pure</span> Products
+        <div className="text-center mb-12 sm:mb-16 space-responsive-md">
+          <h2 className="text-responsive-3xl font-bold text-earth-800 dark:text-earth-200 mb-3 sm:mb-4">
+            Our <span className="text-terracotta-600 dark:text-terracotta-400">Pure</span> Products
           </h2>
-          <p className="text-xl text-earth-600 max-w-3xl mx-auto">
+          <p className="text-responsive-lg text-earth-600 dark:text-earth-300 max-w-3xl mx-auto">
             हमारे शुद्ध उत्पाद - From fresh morning milk to traditional ghee, 
             every product tells a story of purity and tradition
           </p>
-          <div className="mt-6 flex items-center justify-center gap-2 text-sage-600">
-            <span className="w-2 h-2 bg-terracotta-500 rounded-full animate-pulse"></span>
-            <span className="text-sm">Fresh Today • Farm to Table • 100% Organic</span>
-            <span className="w-2 h-2 bg-terracotta-500 rounded-full animate-pulse"></span>
+          <div className="mt-4 sm:mt-6 flex items-center justify-center gap-2 text-sage-600 dark:text-sage-400">
+            <span className="w-2 h-2 bg-terracotta-500 dark:bg-terracotta-400 rounded-full animate-pulse"></span>
+            <span className="text-xs sm:text-sm">Fresh Today • Farm to Table • 100% Organic</span>
+            <span className="w-2 h-2 bg-terracotta-500 dark:bg-terracotta-400 rounded-full animate-pulse"></span>
           </div>
         </div>
 
         {/* Products Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid-responsive-4 gap-4 sm:gap-6 lg:gap-8">
           {products.map((product, index) => (
             <div 
               key={index} 
-              className="bg-white rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-300 group border border-sage-100 relative"
+              className="bg-white dark:bg-card rounded-2xl overflow-hidden hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 group border border-sage-100 dark:border-sage-700 relative"
             >
               {/* Fresh Today Badge */}
-              <div className="absolute top-3 left-3 bg-terracotta-500 text-white px-2 py-1 rounded-full text-xs font-medium z-10">
+              <div className="absolute top-2 sm:top-3 left-2 sm:left-3 bg-terracotta-500 dark:bg-terracotta-400 text-white px-2 py-1 rounded-full text-xs font-medium z-10">
                 Fresh Today
               </div>
 
@@ -199,52 +199,52 @@ const Products = () => {
               </div>
 
               {/* Product Info */}
-              <div className="p-6 space-y-4">
+              <div className="card-responsive space-responsive-sm">
                 <div className="text-center">
-                  <div className="bg-cream-100 rounded-xl p-3 w-fit mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <product.icon className="h-6 w-6 text-terracotta-600" />
+                  <div className="bg-cream-100 dark:bg-cream-900/30 rounded-xl p-2 sm:p-3 w-fit mx-auto mb-3 sm:mb-4 group-hover:scale-110 transition-transform duration-300">
+                    <product.icon className="h-5 w-5 sm:h-6 sm:w-6 text-terracotta-600 dark:text-terracotta-400" />
                   </div>
                   
                   <div>
-                    <h3 className="text-xl font-bold text-earth-800">{product.name}</h3>
-                    <p className="text-sage-600 text-sm font-medium">{product.hindi}</p>
+                    <h3 className="text-responsive-lg font-bold text-earth-800 dark:text-earth-200">{product.name}</h3>
+                    <p className="text-sage-600 dark:text-sage-400 text-xs sm:text-sm font-medium">{product.hindi}</p>
                   </div>
                 </div>
 
-                <p className="text-earth-600 text-sm leading-relaxed text-center">
-                  {product.description.substring(0, 80)}...
+                <p className="text-earth-600 dark:text-earth-300 text-xs sm:text-sm leading-relaxed text-center">
+                  {product.description.substring(0, window.innerWidth < 640 ? 60 : 80)}...
                 </p>
 
                 {/* Features */}
-                <div className="flex flex-wrap gap-2 justify-center">
+                <div className="flex flex-wrap gap-1 sm:gap-2 justify-center">
                   {product.features.map((feature, idx) => (
-                    <span key={idx} className="bg-sage-100 text-sage-700 px-3 py-1 rounded-full text-xs font-medium border border-sage-200">
+                    <span key={idx} className="bg-sage-100 dark:bg-sage-800 text-sage-700 dark:text-sage-300 px-2 sm:px-3 py-1 rounded-full text-xs font-medium border border-sage-200 dark:border-sage-600">
                       {feature}
                     </span>
                   ))}
                 </div>
 
                 {/* Price */}
-                <div className="text-center space-y-2">
+                <div className="text-center space-y-1 sm:space-y-2">
                   <div className="flex items-center justify-center space-x-2">
-                    <span className="text-2xl font-bold text-terracotta-600">{product.price}</span>
-                    <span className="text-sm text-earth-500 line-through">{product.originalPrice}</span>
+                    <span className="text-xl sm:text-2xl font-bold text-terracotta-600 dark:text-terracotta-400">{product.price}</span>
+                    <span className="text-xs sm:text-sm text-earth-500 dark:text-earth-400 line-through">{product.originalPrice}</span>
                   </div>
-                  <p className="text-sm text-earth-500">per {product.size}</p>
-                  <p className="text-xs text-sage-600">Delivery in 2-3 hours</p>
+                  <p className="text-xs sm:text-sm text-earth-500 dark:text-earth-400">per {product.size}</p>
+                  <p className="text-xs text-sage-600 dark:text-sage-400">Delivery in 2-3 hours</p>
                 </div>
 
                 {/* Action Buttons */}
                 <div className="space-y-2">
                   <button 
                     onClick={() => handleAddToCart(product)}
-                    className="w-full bg-terracotta-500 text-white py-3 rounded-xl hover:bg-terracotta-600 transition-all duration-300 font-medium group-hover:shadow-lg transform hover:scale-[1.02]"
+                    className="touch-target w-full bg-terracotta-500 dark:bg-terracotta-400 text-white py-2 sm:py-3 rounded-xl hover:bg-terracotta-600 dark:hover:bg-terracotta-500 transition-all duration-300 font-medium group-hover:shadow-lg transform hover:scale-[1.02] focus-ring text-sm sm:text-base"
                   >
                     Add to Cart
                   </button>
                   <button 
                     onClick={() => openModal(product)}
-                    className="w-full border-2 border-sage-300 text-sage-700 py-2 rounded-xl hover:bg-sage-50 transition-colors font-medium text-sm"
+                    className="touch-target w-full border-2 border-sage-300 dark:border-sage-600 text-sage-700 dark:text-sage-300 py-2 rounded-xl hover:bg-sage-50 dark:hover:bg-sage-800 transition-colors font-medium text-xs sm:text-sm focus-ring"
                   >
                     View Details
                   </button>
@@ -255,8 +255,8 @@ const Products = () => {
         </div>
 
         {/* View All Products */}
-        <div className="text-center mt-16">
-          <button className="border-2 border-terracotta-500 text-terracotta-600 px-8 py-4 rounded-full hover:bg-terracotta-500 hover:text-white transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105">
+        <div className="text-center mt-12 sm:mt-16">
+          <button className="touch-target border-2 border-terracotta-500 dark:border-terracotta-400 text-terracotta-600 dark:text-terracotta-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full hover:bg-terracotta-500 dark:hover:bg-terracotta-400 hover:text-white dark:hover:text-earth-800 transition-all duration-300 font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 focus-ring text-sm sm:text-base">
             View All Products
           </button>
         </div>
